@@ -2,5 +2,6 @@
 firebase_old/functions/node_modules/
 src/node_modules/
 tracker-app/node_modules/
+node_modules/
 
 \.DS_Store
