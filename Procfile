@@ -1,1 +1,1 @@
-web: node src/app.js
+web: node tracker-app/app.js
