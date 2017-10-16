@@ -1,4 +1,5 @@
 var express = require('express');
+var exphbs  = require('express-handlebars');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -10,9 +11,12 @@ var users = require('./routes/users');
 
 var app = express();
 
+var port = process.env.PORT || 8080;
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+// app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -43,8 +47,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+app.listen(port, function () {
+  console.log('Example app listening on port ' + port + '!');
 });
 
 module.exports = app;
