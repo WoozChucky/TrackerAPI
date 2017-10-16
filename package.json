@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "npm": "2.1.x"
+    "node": "8.4.0"
   },
   "scripts": {
     "start": "node app.js"
