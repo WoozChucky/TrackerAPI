@@ -1,14 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var admin = require("firebase-admin");
-
-var serviceAccount = require('../firebase/serviceAccountKey.json');
-
-var firebaseApp = admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://tracker-53924.firebaseio.com"
-});
+var firebaseApp = require('../firebase/firebase_app');
 
 var payload = {
 
@@ -25,10 +18,34 @@ var payload = {
 
 };
 
-var token = 'c7CI4gHs2MQ:APA91bFDw2_Ab77xR3IBhQBh4nIKSko8Q62-vaDRHb6-vfIjpOz3JdH4GAppv0qycDwgiAwKksg1L1BS8Ll4jA6XSWDyaj0JqiZDNA1WalgKXdnRB0trQ3_hxlmSfyGc5KNcriSGv3WC';
+var logged = false;
+var userUUID = '';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
+  if(req.cookies.user_uuid !== undefined) {
+    userUUID = req.cookies.user_uuid;
+  }
+
+  console.log(req.cookies);
+
+  firebaseApp.auth().getUser(userUUID)
+  .then(user => {
+    res.render('index',
+    {
+      userJSON: JSON.stringify(user.toJSON(), null, 2),
+      userOBJECT: user
+    }
+   );
+  })
+  .catch(error => {
+    res.render('login',
+     {
+       message: error
+     }
+    );
+  });
 
   /*
   firebaseApp.messaging().sendToDevice(token, payload)
@@ -38,12 +55,6 @@ router.get('/', function(req, res, next) {
   .catch(error => {
     console.log("Error sending message:", error);
   }); */
-
-  res.render('index', 
-    { title: firebaseApp.name,
-      message: "" 
-    }
-  );
 });
 
 module.exports = router;
