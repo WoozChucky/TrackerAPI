@@ -1,0 +1,68 @@
+<style>
+        #gallery .thumbnail{
+            width:150px;
+            height: 150px;
+            float:left;
+            margin:2px;
+        }
+        #gallery .thumbnail img{
+            width:150px;
+            height: 150px;
+        }
+</style>
+
+<form>
+    <div class="form-group">
+        <label for="fileinput">File input</label>
+        <input type="file" class="form-control-file" id="fileinput" accept="image/*" aria-describedby="fileHelp">
+        <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+    </div>
+</form>
+
+<div id="gallery"></div>
+
+<script>
+    document.getElementById('fileinput').addEventListener('change', function(){
+        var file = this.files[0];
+        // This code is only for demo ...
+        console.log("name : " + file.name);
+        console.log("size : " + file.size);
+        console.log("type : " + file.type);
+        console.log("date : " + file.lastModified);
+    }, false);
+
+
+var uploadfiles = document.querySelector('#fileinput');
+    uploadfiles.addEventListener('change', function () {
+        var files = this.files;
+        for(var i=0; i<files.length; i++){
+            previewImage(this.files[i]);
+        }
+
+    }, false);
+
+    function previewImage(file) {
+        var galleryId = "gallery";
+
+        var gallery = document.getElementById(galleryId);
+        var imageType = /image.*/;
+
+        if (!file.type.match(imageType)) {
+            throw "File Type must be an image";
+        }
+
+        var thumb = document.createElement("div");
+        thumb.classList.add('thumbnail'); // Add the class thumbnail to the created div
+
+        var img = document.createElement("img");
+        img.file = file;
+        thumb.appendChild(img);
+        gallery.appendChild(thumb);
+
+        // Using FileReader to display the image content
+        var reader = new FileReader();
+        reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+        reader.readAsDataURL(file);
+    }
+
+</script>

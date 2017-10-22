@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var firebaseApp = require('../firebase/firebase_app');
+var firebaseApp = require('../../firebase/firebase_app');
 
 var payload = {
 

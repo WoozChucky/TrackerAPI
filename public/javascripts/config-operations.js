@@ -11,7 +11,7 @@ function insertValue() {
         {
             type: 'POST',
             data: request,
-            url: 'api/admin/config/add',
+            url: '../api/admin/config/add',
             dataType : 'json',
             success: (response) => {
                 console.log(response);
@@ -36,7 +36,7 @@ function loadValues() {
     $.ajax(
         {
             type: 'GET',
-            url: 'api/admin/config',
+            url: '../api/admin/config',
             dataType : 'json',
             success: (response) => {
                 Object.keys(response).map(e => {
@@ -56,7 +56,7 @@ function onRemove(key) {
     $.ajax(
         {
             type: 'DELETE',
-            url: 'api/admin/config/' + key.textContent,
+            url: '../api/admin/config/' + key.textContent,
             dataType : 'json',
             success: (response) => {
                 console.log(response);

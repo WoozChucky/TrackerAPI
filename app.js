@@ -8,13 +8,14 @@ var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 
 //Frontend
-var index = require('./routes/index');
-var users = require('./routes/users');
-var admin = require('./routes/admin');
-
+var index = require('./routes/frontend/index');
+var users = require('./routes/frontend/users');
+var admin = require('./routes/frontend/admin/admin');
+var storage = require('./routes/frontend/admin/storage');
 //Backend
 var userApiController = require('./routes/api/users');
 var configApiController = require('./routes/api/admin/configs');
+var storageApiController = require('./routes/api/admin/storage');
 
 var app = express();
 
@@ -41,11 +42,16 @@ app.use(
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Frontend
 app.use('/', index);
 app.use('/users', users);
 app.use('/admin', admin);
+app.use('/admin/storage', storage);
+
+//Backend
 app.use('/api/user', userApiController);
 app.use('/api/admin/config', configApiController);
+app.use('/api/admin/storage', storageApiController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
