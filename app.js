@@ -11,8 +11,10 @@ var sassMiddleware = require('node-sass-middleware');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
+
 //Backend
 var userApiController = require('./routes/api/users');
+var configApiController = require('./routes/api/admin/configs');
 
 var app = express();
 
@@ -43,6 +45,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/admin', admin);
 app.use('/api/user', userApiController);
+app.use('/api/admin/config', configApiController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -67,7 +70,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(port, function () {
-  console.log('Example app listening on port ' + port + '!');
+  console.log('WheresApp service listening on port ' + port + '!');
 });
 
 module.exports = app;
