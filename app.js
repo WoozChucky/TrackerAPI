@@ -10,6 +10,7 @@ var sassMiddleware = require('node-sass-middleware');
 //Frontend
 var index = require('./routes/index');
 var users = require('./routes/users');
+var admin = require('./routes/admin');
 //Backend
 var userApiController = require('./routes/api/users');
 
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/admin', admin);
 app.use('/api/user', userApiController);
 
 // catch 404 and forward to error handler
