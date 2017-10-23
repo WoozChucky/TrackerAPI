@@ -11,11 +11,14 @@
         }
 </style>
 
-<form>
+<form action="../api/admin/storage/upload" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="fileinput">File input</label>
-        <input type="file" class="form-control-file" id="fileinput" accept="image/*" aria-describedby="fileHelp">
+        <input type="file" class="form-control-file" id="fileinput" name="fileinput" accept="image/*" aria-describedby="fileHelp">
         <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default">Upload</button>
     </div>
 </form>
 
