@@ -5,8 +5,8 @@
 ### Project Status
 |   Branch    | Build Status | Test Coverage
 |-------------|---------|---------|
-| **master**  |[![Build Status](https://travis-ci.org/WoozChucky/TrackerAPI.svg?token=4yQbxUU4jm186sCxPw6i&branch=master)](https://travis-ci.org/WoozChucky/TrackerAPI) | [![Coverage Status](https://coveralls.io/repos/github/WoozChucky/TrackerAPI/badge.svg?branch=master)](https://coveralls.io/github/WoozChucky/TrackerAPI?branch=master) |
-| **qa**  |[![Build Status](https://travis-ci.org/WoozChucky/TrackerAPI.svg?token=4yQbxUU4jm186sCxPw6i&branch=qa)](https://travis-ci.org/WoozChucky/TrackerAPI) | [![Coverage Status](https://coveralls.io/repos/github/WoozChucky/TrackerAPI/badge.svg?branch=qa)](https://coveralls.io/github/WoozChucky/TrackerAPI?branch=qa) |
+| **master**  |[[![Build Status](https://travis-ci.org/WoozChucky/TrackerAPI.svg?branch=master)](https://travis-ci.org/WoozChucky/TrackerAPI) | [![Coverage Status](https://coveralls.io/repos/github/WoozChucky/TrackerAPI/badge.svg?branch=master)](https://coveralls.io/github/WoozChucky/TrackerAPI?branch=master) |
+| **qa**  |[![Build Status](https://travis-ci.org/WoozChucky/TrackerAPI.svg?branch=qa)](https://travis-ci.org/WoozChucky/TrackerAPI) | [![Coverage Status](https://coveralls.io/repos/github/WoozChucky/TrackerAPI/badge.svg?branch=qa)](https://coveralls.io/github/WoozChucky/TrackerAPI?branch=qa) |
 | **develop** |[![Build Status](https://travis-ci.org/WoozChucky/TrackerAPI.svg?branch=development)](https://travis-ci.org/WoozChucky/TrackerAPI) | [![Coverage Status](https://coveralls.io/repos/github/WoozChucky/TrackerAPI/badge.svg?branch=development)](https://coveralls.io/github/WoozChucky/TrackerAPI?branch=development) |
 
 # Description
