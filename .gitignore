@@ -9,3 +9,5 @@ node_modules/
 public/stylesheets/main\.css
 
 uploads/
+
+\.nyc_output/

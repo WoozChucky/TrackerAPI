@@ -53,7 +53,7 @@ TODO
     * Contacts must allow location to be known 
 
 ## Tests
-TODO 
+[![Coverage Status](https://coveralls.io/repos/github/WoozChucky/TrackerAPI/badge.svg?branch=development)](https://coveralls.io/github/WoozChucky/TrackerAPI?branch=development)
 ## Releases
 TODO
 ## Credits
