@@ -24,11 +24,9 @@ var userUUID = '';
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  if(req.cookies.user_uuid !== undefined) {
-    userUUID = req.cookies.user_uuid;
+  if(req.get('Authorization') !== undefined) {
+    userUUID = req.get('Authorization');
   }
-
-  console.log(req.cookies);
 
   firebaseApp.auth().getUser(userUUID)
   .then(user => {

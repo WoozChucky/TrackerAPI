@@ -12,6 +12,8 @@ router.post('/login', (req, res, next) => {
 
   var credential = req.body;
 
+  console.log(credential);
+
   firebaseApp.auth().getUser(credential.uid)
       .then(user => {
 
@@ -26,6 +28,7 @@ router.post('/login', (req, res, next) => {
         res.render(require.resolve('./index'));
       })
       .catch(error => {
+        res.statusCode = 400;
         res.json(error);
       });
 });

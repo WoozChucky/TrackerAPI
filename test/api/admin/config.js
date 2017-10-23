@@ -1,10 +1,7 @@
-//During the test the env variable is set to test
-//process.env.NODE_ENV = 'test';
-
 //Require the dev-dependencies
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../app');
+let server = require('../../../app');
 let should = require('should');
 
 chai.use(chaiHttp);
@@ -137,6 +134,22 @@ describe('/DELETE api/admin/config/:key', () => {
                 should(res.status).be.exactly(400, 'should receive 400 http code');
                 should(res.body).have.property('valid', false);
                 should(res.body).have.property('error', 'Not found');
+                done();
+            });
+    });
+ });
+
+ /**
+ * Test the /DELTE api/admin/config/
+ */
+
+describe('/DELETE api/admin/config/', () => {
+    it('should fail to delete a config without the :key parameter', done => {
+
+        chai.request(server)
+            .del('/api/admin/config')
+            .end((err, res) => {
+                should(res.status).be.exactly(404, 'should receive 404 http code');
                 done();
             });
     });

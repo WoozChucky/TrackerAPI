@@ -11,12 +11,9 @@ router.get('/', function(req, res, next) {
     //Get reference to the config 'table/node'
     var configsRef = firebaseApp.database().ref('configs');
     
-          configsRef.once('value', snapshot => {
-                res.json(snapshot.val());
-            }, error => {
-                res.statusCode = 400;
-                res.json(error);
-          });
+    configsRef.once('value', snapshot => {
+        res.json(snapshot.val());
+    });
 
 });
 
@@ -36,10 +33,7 @@ router.get('/:key', function(req, res, next) {
                 res.statusCode = 400;
                 res.json({message: 'Not found'});
               }
-            }, error => {
-                res.statusCode = 400;
-                res.json(error);
-          });
+            });
 
 });
 
@@ -74,16 +68,7 @@ router.post('/add', (req, res, next) => {
         .then(() => {
             res.statusCode = 200;
             res.json({ valid : true });
-        })
-        .catch(error => {
-            res.statusCode = 400;
-            res.json(
-                { 
-                    valid : false,
-                    error: error
-                }
-            );
-    });
+        });
 });
 
 /**
@@ -94,19 +79,8 @@ router.delete('/:key', (req, res, next) => {
     var database = firebaseApp.database();
 
     // Verify if required body data is present
-    if(req.params.key == undefined) {
-        res.statusCode = 400;
-        res.json(
-            { 
-                valid : false,
-                error: error
-            }
-        );
-        return;
-    }
-    
     var key = req.params.key;
-
+    
     var itemReference = database.ref('configs/' + key);
 
     itemReference.once('value', snapshot => {
@@ -115,15 +89,6 @@ router.delete('/:key', (req, res, next) => {
             .then(() => {
                 res.statusCode = 200;
                 res.json({ valid : true });
-            })
-            .catch(reason => {
-                res.statusCode = 400;
-                res.json(
-                    { 
-                        valid : false,
-                        error: reason
-                    }
-                );
             });
         } else {
             res.statusCode = 400;
@@ -135,6 +100,7 @@ router.delete('/:key', (req, res, next) => {
             );
         }
     });
+    
 });
 
 module.exports = router;
