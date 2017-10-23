@@ -13,16 +13,16 @@
 
 |   Dependency             | Version    |
 |--------------------------|------------|
-| **body-parser**          | 1.18.2     |
-| **cookie-parser**        | 1.4.3      |
-| **debug**                | 2.6.9      |
-| **express**              | 4.15.5     |
-| **express-handlebars**   | 3.0.0      |
-| **firebase-admin**       | 5.4.2      |
-| **morgan**               | 1.9.0      |
-| **multer**               | 1.3.0      |
-| **node-sass-midleware**  | 0.11.0     |
-| **serve-favicon**        | 2.4.5      |
+| **body-parser**          |[![Version](https://img.shields.io/badge/version-1.18.2-brightgreen.svg)](https://www.npmjs.com/package/body-parser)|
+| **cookie-parser**        |[![Version](https://img.shields.io/badge/version-1.4.3-brightgreen.svg)](https://www.npmjs.com/package/cookie-parser) |
+| **debug**                |[![Version](https://img.shields.io/badge/version-2.6.9-brightgreen.svg)](https://www.npmjs.com/package/debug) |
+| **express**              |[![Version](https://img.shields.io/badge/version-4.15.5-brightgreen.svg)](https://www.npmjs.com/package/express)|
+| **express-handlebars**   |[![Version](https://img.shields.io/badge/version-3.0.0-brightgreen.svg)](https://www.npmjs.com/package/express-handlebars) |
+| **firebase-admin**       |[![Version](https://img.shields.io/badge/version-5.4.2-brightgreen.svg)](https://www.npmjs.com/package/firebase-admin) |
+| **morgan**               |[![Version](https://img.shields.io/badge/version-1.9.0-brightgreen.svg)](https://www.npmjs.com/package/morgan) |
+| **multer**               |[![Version](https://img.shields.io/badge/version-1.3.0-brightgreen.svg)](https://www.npmjs.com/package/multer) |
+| **node-sass-midleware**  |[![Version](https://img.shields.io/badge/version-0.11.0-brightgreen.svg)](https://www.npmjs.com/package/node-sass-middleware)|
+| **serve-favicon**        |[![Version](https://img.shields.io/badge/version-2.4.5-brightgreen.svg)](https://www.npmjs.com/package/serve-favicon) |
 
 # Description
 TODO
