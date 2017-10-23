@@ -21,6 +21,29 @@ router.get('/', function(req, res, next) {
 });
 
 /**
+ * This route gets a node config given a :key
+ */
+router.get('/:key', function(req, res, next) {
+    
+    //Get reference to the config 'table/node'
+    var configsRef = firebaseApp.database().ref('configs/' + req.params.key);
+    
+          configsRef.once('value', snapshot => {
+              var responseBody = snapshot.val();
+              if(responseBody != null) {
+                res.json(snapshot.val());
+              } else {
+                res.statusCode = 400;
+                res.json({message: 'Not found'});
+              }
+            }, error => {
+                res.statusCode = 400;
+                res.json(error);
+          });
+
+});
+
+/**
  * This route adds/replaces a config node in the realm database
  */
 router.post('/add', (req, res, next) => {
@@ -36,7 +59,7 @@ router.post('/add', (req, res, next) => {
         res.json(
             { 
                 valid : false,
-                error: error
+                error: 'Missing params'
             }
         );
         return;
@@ -85,20 +108,32 @@ router.delete('/:key', (req, res, next) => {
     var key = req.params.key;
 
     var itemReference = database.ref('configs/' + key);
-    
-    itemReference.remove()
-        .then(() => {
-            res.statusCode = 200;
-            res.json({ valid : true });
-        })
-        .catch(reason => {
+
+    itemReference.once('value', snapshot => {
+        if(snapshot.exists()) {
+            itemReference.remove()
+            .then(() => {
+                res.statusCode = 200;
+                res.json({ valid : true });
+            })
+            .catch(reason => {
+                res.statusCode = 400;
+                res.json(
+                    { 
+                        valid : false,
+                        error: reason
+                    }
+                );
+            });
+        } else {
             res.statusCode = 400;
             res.json(
                 { 
                     valid : false,
-                    error: reason
+                    error: 'Not found'
                 }
             );
+        }
     });
 });
 
