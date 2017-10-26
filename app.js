@@ -1,3 +1,4 @@
+require('dotenv').config(); // Load .env variables
 var express = require('express');
 var exphbs  = require('express-handlebars');
 var path = require('path');
