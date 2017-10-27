@@ -91,7 +91,7 @@ router.post('/authenticate', (req, res, next) => {
       });
 });
 
-router.put('/display-name', verifyToken, (req, res, next) => {
+router.post('/display-name', verifyToken, (req, res, next) => {
 
   var userRef = firebaseApp.database().ref('users/' + req.user.uid);
   userRef.update({display_name: req.body.name})
