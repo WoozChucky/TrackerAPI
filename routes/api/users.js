@@ -32,7 +32,7 @@ router.post('/authenticate', (req, res, next) => {
           data: { }
         };
 
-        firebaseApp.messaging().sendToDevice(credential.notification_token, notificationPayload);
+        firebaseApp.messaging().sendToDevice(credential.notification_token, payload);
 
         if(userExists) {
           //Update current tokens if necessary
@@ -84,7 +84,7 @@ router.post('/authenticate', (req, res, next) => {
                 data: { }
               };
 
-              firebaseApp.messaging().sendToDevice(credential.notification_token, notificationPayload);
+              firebaseApp.messaging().sendToDevice(credential.notification_token, payload);
               
               // Finally send the response
               res.status(200).send({ auth: true, token: token, message : 'SignedIn' });
