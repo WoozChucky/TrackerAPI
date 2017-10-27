@@ -23,17 +23,6 @@ router.post('/authenticate', (req, res, next) => {
           userExists = snapshot.hasChild(credential.uid);
         });
 
-        //Send Notification
-        var payload = {
-          notification: {
-            title: "Welcome",
-            body: "123"
-          },
-          data: { }
-        };
-
-        firebaseApp.messaging().sendToDevice(credential.notification_token, payload);
-
         if(userExists) {
           //Update current tokens if necessary
           var userEntry = {
@@ -79,7 +68,7 @@ router.post('/authenticate', (req, res, next) => {
               var payload = {
                 notification: {
                   title: "Welcome",
-                  body: "123"
+                  body: "Let's get started by configuring your account!"
                 },
                 data: { }
               };
@@ -87,7 +76,7 @@ router.post('/authenticate', (req, res, next) => {
               firebaseApp.messaging().sendToDevice(credential.notification_token, payload);
               
               // Finally send the response
-              res.status(200).send({ auth: true, token: token, message : 'SignedIn' });
+              res.status(200).send({ auth: true, token: token, message : 'SignedIn', new: true });
             }
           })
           .catch(reason => {
@@ -100,6 +89,15 @@ router.post('/authenticate', (req, res, next) => {
       .catch(error => {
         res.status(400).send({ auth: false, token: null, message : error });
       });
+});
+
+router.put('/display-name', verifyToken, (req, res, next) => {
+
+  var userRef = firebaseApp.database().ref('users/' + req.user.uid);
+  userRef.update({display_name: req.body.name})
+    .then(() => {res.status(204).send({ auth: true, message : 'Updated!'});}, () => {})
+    .catch(reason => {res.status(400).send({ auth: false, message : reason }); });
+
 });
 
 //router.post('/login')

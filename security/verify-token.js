@@ -1,4 +1,5 @@
 var jwt = require('jsonwebtoken');
+var firebaseApp = ('../firebase/firebase_app.js');
 var secretKey = process.env.SECRET_KEY;
 
 function verifyToken(req, res, next) {
@@ -13,7 +14,15 @@ function verifyToken(req, res, next) {
     if (err)
     return res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });
     // if everything good, save to request for use in other routes
-    req.userId = decoded.id;
+
+    firebaseApp.auth().getUser(req.userId)
+      .then(user => {
+        req.user = user;
+      })
+      .catch(reason => {
+        return res.status(401).send({ auth: false, message: 'Failed to retrieve firebase user from token.' });
+      });
+
     next();
   });
 
