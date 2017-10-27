@@ -23,6 +23,17 @@ router.post('/authenticate', (req, res, next) => {
           userExists = snapshot.hasChild(credential.uid);
         });
 
+        //Send Notification
+        var payload = {
+          notification: {
+            title: "Welcome",
+            body: "123"
+          },
+          data: { }
+        };
+
+        firebaseApp.messaging().sendToDevice(credential.notification_token, notificationPayload);
+
         if(userExists) {
           //Update current tokens if necessary
           var userEntry = {
@@ -64,6 +75,18 @@ router.post('/authenticate', (req, res, next) => {
                 expiresIn: 86400 // expires in 24 hours
               });
 
+              //Send Notification
+              var payload = {
+                notification: {
+                  title: "Welcome",
+                  body: "123"
+                },
+                data: { }
+              };
+
+              firebaseApp.messaging().sendToDevice(credential.notification_token, notificationPayload);
+              
+              // Finally send the response
               res.status(200).send({ auth: true, token: token, message : 'SignedIn' });
             }
           })
