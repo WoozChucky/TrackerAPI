@@ -96,7 +96,7 @@ router.post('/display-name', verifyToken, (req, res, next) => {
 
   var userRef = firebaseApp.database().ref('users/' + req.user.uid);
   userRef.update({display_name: req.body.name})
-    .then(() => {res.status(204).send({ auth: true, message : 'Updated!'});}, () => {})
+    .then(() => {res.status(200).send({ auth: true, message : 'Updated!'});}, () => {})
     .catch(reason => {res.status(400).send({ auth: false, message : reason }); });
 
 });
