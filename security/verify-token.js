@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-var firebaseApp = ('../firebase/firebase_app.js');
+var firebaseApp = require('../firebase/firebase_app.js');
 var secretKey = process.env.SECRET_KEY;
 
 function verifyToken(req, res, next) {
