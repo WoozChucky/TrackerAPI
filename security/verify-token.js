@@ -18,12 +18,12 @@ function verifyToken(req, res, next) {
     firebaseApp.auth().getUser(req.userId)
       .then(user => {
         req.user = user;
+        next();
       })
       .catch(reason => {
         return res.status(401).send({ auth: false, message: 'Failed to retrieve firebase user from token.' });
       });
 
-    next();
   });
 
 }
