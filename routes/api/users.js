@@ -101,6 +101,15 @@ router.post('/display-name', verifyToken, (req, res, next) => {
 
 });
 
+router.put('/notification-token', verifyToken, (req, res, next) => {
+
+  var userRef = firebaseApp.database().ref('users/' + req.user.uid);
+  userRef.update({notification_token: req.body.token})
+    .then(() => {res.status(200).send({ auth: true, message : 'Updated!'});}, () => {})
+    .catch(reason => {res.status(400).send({ auth: false, message : reason }); });
+
+});
+
 //router.post('/login')
 
 router.post('/phoneauth', verifyToken, (req, res, next) => {
