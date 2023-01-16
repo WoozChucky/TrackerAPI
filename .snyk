@@ -10,3 +10,5 @@ patch:
         patched: '2022-11-17T00:48:29.812Z'
     - firebase-admin > @google-cloud/firestore > @google-cloud/common-grpc > @google-cloud/common > google-auto-auth > async > lodash:
         patched: '2022-11-18T00:44:26.036Z'
+    - firebase-admin > @google-cloud/firestore > google-gax > google-auto-auth > async > lodash:
+        patched: '2023-01-16T23:21:37.440Z'
